@@ -1,3 +1,4 @@
+# This includes defining routes, handling requests, and rendering HTML templates.
 from app import create_app
 
 # Create the Flask app
