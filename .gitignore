@@ -4,4 +4,4 @@ venv
 .ipynb_checkpoints
 .vscode
 .DS_Store
-.dolt/
+.dolt
