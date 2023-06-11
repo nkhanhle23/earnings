@@ -1,0 +1,26 @@
+version: '3'
+services:
+  database: 
+    image: nkhanhle23-earnings-sql-server:latest
+    restart: always 
+    environment:
+      - DB_HOST = 'localhost'      # Hostname of the Dolt database server
+      - DB_PORT = 3306             # Port number of the Dolt database server
+      - DB_USER = 'root'  # Username for accessing the Dolt database
+      - DB_PASSWORD = ''  # Password for the Dolt database
+      - DB_DATABASE = 'earnings' 
+    ports:
+    - "3306:3306"
+    volumes:
+    - ./data:/var/lib/mysql
+  
+  dashboard:
+    build: .
+    stop_signal: SIGINT
+    ports:
+      - "4000:80"
+    volumes:
+      - ./app:/app
+    depends_on:
+    - database
+    
