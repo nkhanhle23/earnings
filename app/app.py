@@ -1,6 +1,6 @@
 # app.py
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import mysql.connector
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_DATABASE
 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Company Ranks</title>
+</head>
+<body>
+    <h1>Company Ranks</h1>
+
+    <!-- Filter form -->
+    <form method="GET" action="/">
+        <label for="company-filter">Filter by Company:</label>
+        <select id="company-filter" name="company">
+            <option value="">All Companies</option>
+            <option value="Company A">Company A</option>
+            <option value="Company B">Company B</option>
+            <!-- Add more options for each company -->
+        </select>
+        <br>
+        <label for="date-filter">Filter by Date:</label>
+        <input type="date" id="date-filter" name="date">
+        <br>
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <!-- Table to display ranks -->
+    <table>
+        <tr>
+            <th>Company</th>
+            <th>Date</th>
+            <th>Rank</th>
+        </tr>
+        {% for rank in ranks %}
+        <tr>
+            <td>{{ rank.act_symbol }}</td>
+            <td>{{ rank.date }}</td>
+            <td>{{ rank.rank }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
