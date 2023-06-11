@@ -4,4 +4,3 @@ pandas
 matplotlib
 mysql-connector-python
 requests
-
