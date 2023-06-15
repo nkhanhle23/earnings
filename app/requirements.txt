@@ -1,6 +1,6 @@
-Flask
-flask_sqlalchemy
+streamlit
 pandas
 matplotlib
-mysql-connector-python
 requests
+plotly-express
+plotly

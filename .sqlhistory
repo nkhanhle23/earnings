@@ -1,3 +1,8 @@
 SHOW DATABASES;
 show databases;
 use earnings;
+show databases;
+USE information_schema;
+SHOW DATABASES;
+show databases;
+use earnings;

@@ -14,11 +14,7 @@ RUN pip install -r requirements.txt
 COPY app/ /app
 
 # Expose port 80
-EXPOSE 80
+EXPOSE 8501
 
-# Copy the entrypoint script
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-# Set the command to run when the container starts
-ENTRYPOINT ["/entrypoint.sh"]
+# Run app.py when the container launches
+ENTRYPOINT ["streamlit", "run", "app.py"]
