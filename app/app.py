@@ -1,10 +1,12 @@
-from flask import Flask, render_template, request
+# IMPORT PACKAGES
 import streamlit as st
 import requests
 import pandas as pd
 import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
+
+# WRITE WEB APP CODE WITH STREAMLIT
 def app():
     @st.cache_data
     @st.cache_resource
