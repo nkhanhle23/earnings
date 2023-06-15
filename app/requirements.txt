@@ -4,4 +4,4 @@ matplotlib
 requests
 plotly-express
 plotly
-PIL
+pillow
