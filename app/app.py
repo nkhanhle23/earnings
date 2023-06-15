@@ -5,8 +5,20 @@ import pandas as pd
 import plotly.express as px
 from datetime import datetime
 import plotly.graph_objects as go
+from PIL import Image
+import urllib.request
 
-# WRITE WEB APP CODE WITH STREAMLIT
+# SET PAGE CONFIGURATION
+# Download the image from the URL
+image_url = "https://cdn-icons-png.flaticon.com/512/8234/8234015.png"
+image_path = "icon.png"
+urllib.request.urlretrieve(image_url, image_path)
+
+# Open the image using PIL
+img = Image.open(image_path)
+
+# Set page configuration
+st.set_page_config(page_title="Financial Analysis", page_icon=img, layout="wide", initial_sidebar_state="expanded")# WRITE WEB APP CODE WITH STREAMLIT
 def app():
     @st.cache_data
     @st.cache_resource
