@@ -6,9 +6,3 @@ venv
 .DS_Store
 .git
 .gitignore
-.ipython
-.local
-.cache
-.jupyter
-.dolt
-.sqlhistory

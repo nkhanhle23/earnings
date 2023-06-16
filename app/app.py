@@ -8,23 +8,24 @@ import plotly.graph_objects as go
 from PIL import Image
 import urllib.request
 
-# SET PAGE CONFIGURATION
-# Download the image from the URL
-image_url = "https://cdn-icons-png.flaticon.com/512/8234/8234015.png"
-image_path = "icon.png"
-urllib.request.urlretrieve(image_url, image_path)
+def main():
+    # SET PAGE CONFIGURATION
+    # Download the image from the URL
+    image_url = "https://cdn-icons-png.flaticon.com/512/8234/8234015.png"
+    image_path = "icon.png"
+    urllib.request.urlretrieve(image_url, image_path)
 
-# Open the image using PIL
-img = Image.open(image_path)
+    # Open the image using PIL
+    img = Image.open(image_path)
 
-# Set page configuration
-st.set_page_config(page_title="Financial Analysis", page_icon=img, layout="wide", initial_sidebar_state="expanded")# WRITE WEB APP CODE WITH STREAMLIT
-def app():
+    # Set page configuration
+    st.set_page_config(page_title="Financial Analysis", page_icon=img)
+    
+    # ------ DATA FUNCTION ------
     @st.cache_data
     @st.cache_resource
     def fetch_data(query):
         # Fetch data from the API
-        
         response = requests.get("https://www.dolthub.com/api/v1alpha1/nkhanhle23/earnings",params={'q':query})
         data = response.json()
 
@@ -37,24 +38,10 @@ def app():
         data['month'] = data['date'].dt.month
 
         return data
-
     #  ------ SIDE BAR ------  
-    
-    # Apply custom CSS style to make buttons have the same size
-    st.markdown(
-        """
-        <style>
-        .button-wrapper > * {
-            flex: 1;
-            margin: 0 5px;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
     # Create buttons for each page
     # Define emojis for each page
-    emoji_about = "ℹ️"
+    emoji_about = "🏚️"
     emoji_health_check = "🏥"
     emoji_income_statement = "💰"
     emoji_balance_sheet = "📊"
@@ -62,30 +49,33 @@ def app():
     emoji_outlook_forecast = "🔮"
 
     # Create buttons with emojis for each page
-    button_about = st.sidebar.button(emoji_about + " About",key="about_button")
-    button_health_check = st.sidebar.button(emoji_health_check + " Company Health Check",key="health_check_button")
-    button_income_statement = st.sidebar.button(emoji_income_statement + " Income Statement",key="income_statement_button")
-    button_balance_sheet = st.sidebar.button(emoji_balance_sheet + " Balance Sheet Analysis",key="balance_sheet_button")
-    button_cash_flow = st.sidebar.button(emoji_cash_flow + " Cash Flow Analysis",key="cash_flow_button")
-    button_outlook_forecast = st.sidebar.button(emoji_outlook_forecast + " Outlook and Forecast",key="outlook_forecast_button")
+    button_about = emoji_about + " Home Page"
+    button_health_check = emoji_health_check + " Company Health Check"
+    button_income_statement = emoji_income_statement + " Earnings Analysis"
+    button_balance_sheet = emoji_balance_sheet + " Balance Sheet Analysis"
+    button_cash_flow = emoji_cash_flow + " Cash Flow Analysis"
+    button_outlook_forecast = emoji_outlook_forecast + " Outlook and Forecast"
 
+    # Create a sidebar menu for navigation
+    st.sidebar.title("Navigation")
+    selection = st.sidebar.radio("Go to", [button_about, button_health_check, button_income_statement, button_balance_sheet, button_cash_flow, button_outlook_forecast])
+    
     # ------ DASHBOARDS/WEB PAGES ------
-    if button_about:
-        st.title(emoji_about + " ABOUT US")
+    if selection == button_about:
+        st.title(emoji_about + " HOME PAGE")
         st.write("We are a group of students from the Berlin School of Economics and Law.")
         st.write("We are currently working on a project to build a web application that allows users to check the financial performance of a company.")
 
-    elif button_health_check:  
+    elif selection == button_health_check:  
         # ------ MAIN PAGE ------
         st.title(emoji_health_check + " COMPANY HEALTH CHECK")  
-        st.markdown("This app allows you to check the company's performance based on its financials.")
+        st.markdown("This page allows you to check the company's performance based on its financials.")
 
         # ------ DATA ------
-        query = '''SELECT * FROM `rank_score` ORDER BY `date` DESC'''
-        data = fetch_data(query=query)
+        query_rank = '''SELECT * FROM `rank_score` ORDER BY `date` DESC'''
+        data = fetch_data(query=query_rank)
 
         # ------ FILTER ------ 
-        #st.header("Filters")
         selected_company = st.multiselect("Select Company", 
                                         options=data["act_symbol"].unique()
                                         )
@@ -144,11 +134,13 @@ def app():
         # ------ DATA TABLE ------
         st.dataframe(df_selection)
 
-    elif button_income_statement:
+    elif selection == button_income_statement:
         
         # ------ DATA ------
         query = '''SELECT * FROM `income_statement` ORDER BY `date` DESC'''
         data = fetch_data(query=query)
+
+        # ------ TITLE ------
         st.title(emoji_income_statement + " EARNINGS ANALYSIS")
         st.write("The income statement is one of the three major financial statements that reports a company's financial performance over a specific accounting period. It tells you how much money a corporation made or lost.")
 
@@ -217,7 +209,7 @@ def app():
         # ------ DATA TABLE ------
         st.dataframe(df_selection)
 
-    elif button_balance_sheet:
+    elif selection == button_balance_sheet:
         
         # ------ DATA ------
         query_equity = '''SELECT * FROM `balance_sheet_equity` ORDER BY `date` DESC'''
@@ -301,7 +293,7 @@ def app():
 
 
 
-    elif button_cash_flow:
+    elif selection == button_cash_flow:
         # ------ DATA ------
         query_cash_flow = '''SELECT * FROM `cash_flow_statement` ORDER BY `date` DESC'''
         data_cash_flow = fetch_data(query=query_cash_flow)
@@ -361,7 +353,7 @@ def app():
         
         
 
-    elif button_outlook_forecast:
+    elif selection == button_outlook_forecast:
         # ------ DATA ------
         query_eps = '''SELECT * FROM `eps_estimate` ORDER BY `date` DESC'''
         data_eps = fetch_data(query=query_eps)
@@ -428,4 +420,4 @@ def app():
         st.plotly_chart(fig_sales)
 
 if __name__ == "__main__":
-    app()
+    main()
