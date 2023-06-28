@@ -17,4 +17,4 @@ COPY app/ /app
 EXPOSE 8503
 
 # Run app.py when the container launches
-ENTRYPOINT ["streamlit", "run", "app.py"]
+ENTRYPOINT ["streamlit", "run", "🙋_Welcome.py"]
