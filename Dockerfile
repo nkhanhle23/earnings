@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 COPY app/ /app
 
 # Expose port 80
-EXPOSE 8501
+EXPOSE 8503
 
 # Run app.py when the container launches
 ENTRYPOINT ["streamlit", "run", "app.py"]
