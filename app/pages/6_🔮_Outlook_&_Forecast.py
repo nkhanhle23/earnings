@@ -9,9 +9,6 @@ import plotly.graph_objects as go
 @st.cache_data
 @st.cache_resource
 
-# SET PAGE CONFIGURATION
-st.set_page_config(page_title= "Outlook & Forecast", page_icon= "🔮")
-
 
 def fetch_data(query):
     # Fetch data from the API

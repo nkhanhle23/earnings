@@ -7,9 +7,6 @@ from datetime import datetime
 @st.cache_data
 @st.cache_resource
 
-# SET PAGE CONFIGURATION
-st.set_page_config(page_title="Company Overall Performance", page_icon= "🏥")
-
 # Custom function to fetch data from the API
 def fetch_data(query):
         # Fetch data from the API
