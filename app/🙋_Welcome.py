@@ -1,20 +1,11 @@
 import streamlit as st
-from PIL import Image
-import urllib.request
 
 # SET PAGE CONFIGURATION
-# Download the image from the URL
-image_url = "https://cdn-icons-png.flaticon.com/512/8234/8234015.png"
-image_path = "icon.png"
-urllib.request.urlretrieve(image_url, image_path)
+st.set_page_config(page_title="Financial Dashboard", page_icon=":chart_with_upwards_trend:")
 
-# Open the image using PIL
-img = Image.open(image_path)
 
-# Set page configuration
-st.set_page_config(page_title="Financial Dashboard", page_icon=":bar_chart:")
 # Welcome page
-st.write("# Welcome to the Financial Dashboard! :bar_chart:")
+st.write("# Welcome to the Financial Dashboard! :chart_with_upwards_trend:")
 st.write("## Team LAY: Le, Anna, Yagmur")
 st.write("This is our EA for Big Data Project.")
 st.write("Our aim is to build an interactive financial dashboard, where you can choose and check selected KPIs and get insights into the company's performance and health.")

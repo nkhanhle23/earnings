@@ -8,6 +8,10 @@ import plotly.graph_objects as go
 
 @st.cache_data
 @st.cache_resource
+
+# SET PAGE CONFIGURATION
+st.set_page_config(page_title= "Rank Comparison", page_icon= "🏆")
+
 def fetch_data(query):
     # Fetch data from the API
     response = requests.get("https://www.dolthub.com/api/v1alpha1/nkhanhle23/earnings",params={'q':query})
