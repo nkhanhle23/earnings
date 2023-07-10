@@ -3,11 +3,6 @@ import streamlit as st
 # SET PAGE CONFIGURATION
 st.set_page_config(page_title="Financial Dashboard", page_icon=":chart_with_upwards_trend:")
 
-
-@st.cache_data(ttl=24*60*60)
-@st.cache_resource(ttl=24*60*60)
-
-
 # Welcome page
 st.write("# Welcome to the Financial Dashboard! :chart_with_upwards_trend:")
 st.write("## Team LAY: Le, Anna, Yagmur")
