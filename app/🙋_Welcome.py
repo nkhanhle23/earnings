@@ -1,5 +1,9 @@
 import streamlit as st
 
+@st.cache_data(ttl=24*60*60)
+@st.cache_resource(ttl=24*60*60)
+
+
 # SET PAGE CONFIGURATION
 st.set_page_config(page_title="Financial Dashboard", page_icon=":chart_with_upwards_trend:")
 
