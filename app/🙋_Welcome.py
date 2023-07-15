@@ -30,6 +30,6 @@ st.markdown(
     - Check out [Earnings Data](https://www.dolthub.com/repositories/post-no-preference/earnings)
     
     ### Want to learn more about the project?
-    - Check out [Big Data Project](https://github.com/nkhanhle23/earnings)
+    - Check out [Big Data Project](https://github.com/nkhanhle23/earnings/tree/new-attempt)
     """
 )
