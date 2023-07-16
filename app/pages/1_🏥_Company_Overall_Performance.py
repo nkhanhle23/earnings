@@ -60,8 +60,8 @@ data = pd.merge(data_income, data_asset, on=['act_symbol', 'date', 'year','perio
 data = pd.merge(data, data_equity, on=['act_symbol', 'date', 'year','period'], how='inner')
 data = pd.merge(data, data_cashflow, on=['act_symbol', 'date', 'year','period'], how='inner')
 
-# ------ SIDEBAR ------
-selected_year = st.selectbox("Select Year", data["year"].unique())
+# ------ Select year ------
+selected_year = st.selectbox("Select Year (applied for Summarized Income Statement)", data["year"].unique())
 
 # Change data type to numeric
 data["sales"] = pd.to_numeric(data["sales"])
