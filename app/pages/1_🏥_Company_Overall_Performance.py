@@ -4,8 +4,8 @@ import requests
 from datetime import datetime
 
 
-@st.cache_data
-@st.cache_resource
+@st.cache_data(ttl="7 days")
+#@st.cache_resource
 
 # Custom function to fetch data from the API
 def fetch_data(query):
